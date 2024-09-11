@@ -17,4 +17,6 @@ router.delete("/postagens/:postagem_id", postagensHelpers.validationID, postagen
 
 router.put("/postagens/:postagem_id/imagem", postagensHelpers.validationID, postagensController.updateImage);
 
+router.put("/v2/postagens/:postagem_id/imagem", postagensHelpers.validationID, postagensController.updateImage);
+
 export default router
