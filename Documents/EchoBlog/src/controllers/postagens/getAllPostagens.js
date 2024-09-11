@@ -11,13 +11,37 @@ const getAllPostagens = async (req, res) => {
       return res.status(500).json({ message: "Usuario não existe" })
     }
 
-    const postagem = await Postagem.findOne({ where: { autor: usuario.nome } })
+    const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const offset = (page - 1) * limit;
 
-    if (!postagem) {
+    const postagens = await Postagem.findAndCountAll({
+      limit,
+      offset,
+      where: { autor: usuario.nome } 
+    });
+
+    if (!postagens) {
       return res.status(500).json({ message: "Autor não existe" })
     }
 
-    return res.json({ message: postagem })
+    const totalPaginas = Math.ceil(postagens.count / limit);
+
+    res.json({
+      totalPostagens: postagens.count,
+      totalPaginas,
+      itemsPorPagina: limit,
+      paginaAtual: page,
+      postagens: postagens.rows,
+      proximaPagina:
+        totalPaginas === 0
+          ? null
+          : `http://localhost/${process.env.PORT}/postagens?page=${page + 1}`,
+      paginaAnterior:
+        totalPaginas === 0
+          ? null
+          : `http://localhost/${process.env.PORT}/postagens?page=${page - 1}`,
+    })
   }
 
   const page = parseInt(req.query.page) || 1;
