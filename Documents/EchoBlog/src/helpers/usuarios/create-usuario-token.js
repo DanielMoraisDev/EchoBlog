@@ -4,6 +4,7 @@ const createUsuarioToken = async (usuario, req, res) => {
   try {
     const token = jwt.sign(
       {
+        id: usuario.id,
         nome: usuario.nome,
         papel: usuario.papel,
       },

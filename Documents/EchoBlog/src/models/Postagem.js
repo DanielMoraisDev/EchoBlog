@@ -33,7 +33,8 @@ const Postagem = conn.define(
         required: true
     },
     imagem: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(255),  
+        defaultValue: null
     }
   },
   {
