@@ -5,7 +5,7 @@ export const router = Router();
 import postagensController from "../controllers/postagens/postagensController.js";
 import postagensHelpers from "../helpers/postagens/postagensHelpers.js";
 
-router.post("/postagens", postagensHelpers.validateCreatePostagem, postagensHelpers.validation,  postagensController.create);
+router.post("/postagens",postagensHelpers.createImage.single("imagem"), postagensHelpers.validateCreatePostagem, postagensHelpers.validation,  postagensController.create);
 
 router.get("/postagens", postagensController.getAll);
 

@@ -3,7 +3,8 @@ import Postagem from "../../models/Postagem.js";
 const updatePostagem = async (req, res) => {
   const { postagem_id } = req.params;
 
-  const { titulo, conteudo, dataPublicacao, autor, imagem } = req.body;
+  const { titulo, conteudo, dataPublicacao, autor } = req.body;
+  const imagem  = req.file.path
 
   const updatedPostagem = {
     titulo,

@@ -27,7 +27,7 @@ const getAllPostagens = async (req, res) => {
 
     const totalPaginas = Math.ceil(postagens.count / limit);
 
-    res.json({
+    return res.json({
       totalPostagens: postagens.count,
       totalPaginas,
       itemsPorPagina: limit,
