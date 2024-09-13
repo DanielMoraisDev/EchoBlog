@@ -21,7 +21,6 @@ const createPostagem = async (req, res) => {
     req.user = decoded;
 
     postagem.autor = decoded.nome;
-    
   });
 
   try {
