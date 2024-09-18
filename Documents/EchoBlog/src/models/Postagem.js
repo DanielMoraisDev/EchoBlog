@@ -1,5 +1,6 @@
 import conn from "../config/conn.js";
 import { DataTypes } from "sequelize";
+import Usuario from "./Usuario.js";
 
 const table_mysql = "postagens";
 
@@ -41,5 +42,8 @@ const Postagem = conn.define(
     tableName: table_mysql,
   }
 );
+
+Usuario.hasMany(Postagem)
+Postagem.belongsTo(Usuario)
 
 export default Postagem

@@ -1,14 +1,11 @@
 import { Sequelize } from "sequelize"
 import "dotenv/config"
 
-const DBName = process.env.DB_NAME
-const DBUser = process.env.DB_USER
-const DBPassword = process.env.DB_PASSWORD
-const DBHost = process.env.DB_HOST
+import db from "./databases.js"
 
-const conn = new Sequelize(DBName, DBUser, DBPassword, {
+const conn = new Sequelize(db.db, db.user, db.password, {
     dialect: "mysql",
-    host: DBHost 
+    host: db.host
 })
 
 try {
